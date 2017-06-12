@@ -80,7 +80,7 @@ Date Object
 **************************************************************************************/
 (function(testerOne){
   "use strict";
-  var todayIs = new Date(2017, 5, 12);
+  var todayIs = new Date();
   console.assert(todayIs == today, "#3 Test failed. Did you set the date correctly?");
 })(testerOne);
 
@@ -120,14 +120,14 @@ Hoisting
 **************************************************************************************/
 (function(){
   "use strict";
+  var birthday(1983, 3, 21);
   var date = new Date(birthday);
-  var birthday(1983, );
+
 
   var bdayMsg = function(){
     return "You were born on " + date.toDateString();
-  bdayMsg();
 }
-
+  bdayMsg();
   console.log("#5 bdayMsg()", bdayMsg());
   console.assert(bdayMsg() == "You were born on Thu Apr 21 1983", "#5 Test failed. Check function hoisting." )
 })();
@@ -146,7 +146,7 @@ Date object
 (function(testerTwo){
   "use strict";
   var today = new Date();
-  var stringDate = new Date(2017, 5, 12)
+  var stringDate = "June 12 2018";
   console.log("#6 stringDate", stringDate)
   console.assert(stringDate == testerTwo, "#6 Test Failed. Did you set stringDate correctly?")
 })(testerTwo);
@@ -171,8 +171,8 @@ Hoisting
 (function(){
   "use strict";
   var pizza = {
-    sauce: true;
-    orderNow: true;
+    sauce: "";
+    orderNow: "";
     pizzaMkr: function(){
       if (pizza.orderNow == true && pizza.sauce == true){
         return "We are making your pizza with " + this.sauceType + " and " + this.protein + ". Pickup in 20 minutes."
@@ -182,13 +182,10 @@ Hoisting
       }
     }
   }
-  this.sauceType = "tomato";
-  this.protein = "chicken";
-
-
-
-
-
+  pizza.sauceType = "tomato";
+  pizza.protein = "chicken";
+  pizza.orderNow = true;
+  pizza.sauceType = true;
 
   pizza.pizzaMkr();
   console.log("# 7 pizza.pizzaMrk()", pizza.pizzaMkr());
@@ -292,7 +289,7 @@ Compartmentalization
 
   function duplicate() {
     multiply = 2 * 10;
-  };
+  })();
 
   duplicate();
 
