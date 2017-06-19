@@ -104,6 +104,7 @@ Warm up
 /**************************************************************************************
 ------------ ANSWER -------------------
 inside the IFEE it will print 4.
+outside the IFEE it prints undefined because add hasnt been declared yet on the scope.
 **************************************************************************************/
 
 
@@ -120,9 +121,8 @@ Hoisting
 **************************************************************************************/
 (function(){
   "use strict";
-  var birthday(1983, 3, 21);
+  var birthday = "April 21, 1983";
   var date = new Date(birthday);
-
 
   var bdayMsg = function(){
     return "You were born on " + date.toDateString();
@@ -146,7 +146,7 @@ Date object
 (function(testerTwo){
   "use strict";
   var today = new Date();
-  var stringDate = "June 12 2018";
+  var stringDate = today.toDateString;
   console.log("#6 stringDate", stringDate)
   console.assert(stringDate == testerTwo, "#6 Test Failed. Did you set stringDate correctly?")
 })(testerTwo);
@@ -170,10 +170,16 @@ Hoisting
 **************************************************************************************/
 (function(){
   "use strict";
+
+
+
+
   var pizza = {
-    sauce: "";
-    orderNow: "";
-    pizzaMkr: function(){
+    sauce: "",
+    orderNow: "",
+
+     pizzaMkr = function(){
+
       if (pizza.orderNow == true && pizza.sauce == true){
         return "We are making your pizza with " + this.sauceType + " and " + this.protein + ". Pickup in 20 minutes."
       }
@@ -185,9 +191,10 @@ Hoisting
   pizza.sauceType = "tomato";
   pizza.protein = "chicken";
   pizza.orderNow = true;
-  pizza.sauceType = true;
-
+  pizza.sauce = true;
   pizza.pizzaMkr();
+
+
   console.log("# 7 pizza.pizzaMrk()", pizza.pizzaMkr());
   console.assert(pizza.pizzaMkr() == "We are making your pizza with tomato and chicken. Pickup in 20 minutes.", "#7 Test failed. Did you add the propeties? Did you set the values correctly? Did you fix the hoisting issues?")
 })();
@@ -226,6 +233,8 @@ HINTS:
 
   var benefit = {}
   //Add properties to 'benefit' using braket notation
+  benefit ["credit"] = "50";
+  benefit ["discount"] = "5";
 
   var accountCheck = function() {
 
@@ -288,8 +297,8 @@ Compartmentalization
   var multiply = 2 * 8;
 
   function duplicate() {
-    multiply = 2 * 10;
-  })();
+    let multiply = 2 * 10;
+  }
 
   duplicate();
 
